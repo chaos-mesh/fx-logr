@@ -14,8 +14,48 @@
 
 package fxlogr
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/go-logr/logr/funcr"
+	"github.com/stretchr/testify/assert"
+	"go.uber.org/fx/fxevent"
+)
 
 func TestLogrLogger(t *testing.T) {
+	tests := []struct {
+		name        string
+		give        fxevent.Event
+		wantMessage string
+	}{
+		{
+			name: "OnStartExecuting",
+			give: &fxevent.OnStartExecuting{
+				FunctionName: "hook.onStart",
+				CallerName:   "bytes.NewBuffer",
+			},
+			wantMessage: "\"level\"=0 \"msg\"=\"OnStart hook executing\" \"callee\"=\"hook.onStart\" \"caller\"=\"bytes.NewBuffer\"",
+		},
+	}
 
+	for _, tt := range tests {
+		tt := tt
+
+		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+
+			message := ""
+
+			l := funcr.New(
+				func(_, args string) {
+					message = args
+				},
+				funcr.Options{},
+			)
+
+			WithLogr(&l)().LogEvent(tt.give)
+
+			assert.Equal(t, tt.wantMessage, message)
+		})
+	}
 }
