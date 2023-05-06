@@ -1,4 +1,4 @@
-module github.com/chaos-mesh/fxlogr
+module github.com/chaos-mesh/fx-logr
 
 go 1.20
 
