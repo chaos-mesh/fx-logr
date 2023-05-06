@@ -5,7 +5,17 @@ fxevent logr adapter.
 ## Installation
 
 ```bash
-go get github.com/chaos-mesh/fxlogr
+go get github.com/chaos-mesh/fx-logr
+```
+
+## How to use
+
+```go
+func main() {
+  fx.New(
+    fx.WithLogger(
+      fxlogr.WithLogr(&logger)
+    ),
 ```
 
 ## License
