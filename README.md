@@ -11,6 +11,12 @@ go get github.com/chaos-mesh/fx-logr
 ## How to use
 
 ```go
+import (
+  "go.uber.org/fx"
+
+  fxlogr "github.com/chaos-mesh/fx-logr"
+)
+
 func main() {
   fx.New(
     fx.WithLogger(
