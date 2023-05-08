@@ -1,6 +1,6 @@
 # fx-logr
 
-fxevent logr adapter.
+Fx fxevent logr adapter. See <https://pkg.go.dev/go.uber.org/fx#WithLogger> for more details.
 
 ## Installation
 
