@@ -22,6 +22,8 @@ func main() {
     fx.WithLogger(
       fxlogr.WithLogr(&logger)
     ),
+  )
+}
 ```
 
 ## License
